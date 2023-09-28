@@ -1,0 +1,65 @@
+@use '../util/' as *;
+
+.toggle {
+    display: grid;
+    grid-template-columns: 1fr rem(48);
+    align-items: center;
+    gap: rem(8);
+    border: none;    
+    margin: 0;
+
+    legend {
+        font-size: rem(14);
+        grid-column: 1 / 2; 
+        float: left; 
+        color: var(--toggle-color)  
+    }
+
+    &__wrapper {    
+        position: relative;
+        grid-column: 2 / 3;
+        height: rem(24);
+    }
+
+    input[type="radio"]{
+        margin: 0 rem(-2) 0 rem(-2);
+        opacity: 0;
+        height: rem(24);
+        width: rem(24);        
+
+        &:hover ~ .toggle__button {
+            border: 2px solid var(--text2-color);
+        }
+    }
+
+    &__background {
+        display: block;
+        height: 100%;       
+        width: 100%; 
+        position: absolute;
+        top: 0;
+        border-radius: rem(12);
+        background: linear-gradient(
+            225deg, 
+            var(--toggle-bg-start-color) 0%, 
+            var(--toggle-bg-end-color) 98.02%);   
+            pointer-events: none;            
+    }
+
+    &__button {
+        position: absolute;
+        left: rem(3);
+        top: rem(3);
+        right: 100%;
+        width: rem(18);
+        height: rem(18);
+        border-radius: 50%;
+        background-color: var(--background);   
+        transition: all 400ms cubic-bezier(0.85, 0, 0.15, 1);
+    }
+
+    #light:checked ~ .toggle__button {
+        left: calc(100% - 21px);
+        right: 3px;
+    }
+ }
